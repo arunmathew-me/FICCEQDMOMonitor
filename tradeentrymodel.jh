@@ -1,0 +1,40 @@
+
+entity Role {
+	roleId String
+}
+
+entity User {
+	userId String,
+    userName String
+    roleId String required
+}
+
+entity TradeType{
+	tradeTypeId String required,
+    tradeTypeName String
+}
+
+entity TradeEntry {
+	tradeEntryId Long,
+	orderReferenceId String required,
+    tradeType String,
+    fixMessage String,
+    processStatus String
+    
+}
+enum ProcessStatus {
+    PENDING, IN, SPANISH
+}
+relationship OneToMany {
+	Role{roleId} to User,
+    TradeType{tradeTypeId} to TradeEntry{tradeType}
+}
+// Set pagination options
+paginate TradeEntry with infinite-scroll
+
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+// Set an angular suffix
+// angularSuffix * with mySuffix

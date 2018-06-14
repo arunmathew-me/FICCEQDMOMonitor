@@ -23,7 +23,7 @@ entity TradeEntry {
     
 }
 enum ProcessStatus {
-    PENDING, IN, SPANISH
+    PENDING, PROCESSING, PROCESSED, ERROR
 }
 relationship OneToMany {
 	Role{roleId} to User,
